@@ -4,7 +4,7 @@ using namespace std;
 class Date
 {
 public:
-Date(int, int, int);
+Date(int m, int d, int y);
 ~Date();
 
 /*Get function for accessing private member*/
@@ -56,7 +56,7 @@ string monthName();
     9                October     31
     10               November    30
     11               December    31*/
-int numberOfDays(int);
+int numberOfDays();
 
 /* Function to print a calendar of the current month.
    Just like what you see on a calendar. An example is like
@@ -84,7 +84,7 @@ int year;
 };
 
 //==============================================================================
-//==============================================================================
+//========================= implementation ==============================
 //==============================================================================
 
 Date::Date(int m, int d, int y){
@@ -108,7 +108,7 @@ int Date::getYear() {
 
 /*Set function for updating private member*/
 void Date::setDay(int set_day) {
-        day = (set_day > 0 && set_day <= numberOfDays(month)) ? set_day : 1;
+        day = (set_day > 0 && set_day <= numberOfDays()) ? set_day : 1;
 }
 void Date::setMonth(int set_month) {
         month = (set_month >= 1 && set_month <= 12) ? set_month : 1;
@@ -124,15 +124,19 @@ void Date::setYear(int set_year) {
     DateAfter(3) should return a date of 11/3/2018 */
 Date Date::DateAfter(int days) {
         int copy_year=year, copy_month=month, copy_day=day+days;
-        while(copy_day>numberOfDays(copy_month)) {
-                copy_day-=numberOfDays(copy_month);
+        Date temp1(copy_month, copy_day, copy_year);
+        while(copy_day>temp1.numberOfDays()) {
+                copy_day-=temp1.numberOfDays();
                 copy_month++;
                 if(copy_month>12) {
-                        copy_year+=copy_month/12;
-                        copy_month%=12;
+                        temp1.setYear(copy_year+=copy_month/12);
+                        temp1.setMonth(copy_month%=12);
+                } else {
+                        temp1.setMonth(copy_month);
                 }
         }
-        return Date(copy_month, copy_day, copy_year);
+        temp1.setDay(copy_day);
+        return temp1;
 }
 
 /*A Function that returns the date after a given date
@@ -141,16 +145,24 @@ Date Date::DateAfter(int days) {
     today is 8/3/2018 (Day/Month/Year)
     DateBefore(3) should return a date of 5/3/2018 */
 Date Date::DateBefore(int days) {
-        int copy_year=year, copy_month=month, copy_day=day-days;
+        int copy_year = year, copy_month = month, copy_day = day - days;
+        // cout << month <<day << year<<endl;
+        // cout << "before1"<<copy_month<< copy_day<< copy_year<<"\n";
+        Date temp2(copy_month, copy_day, copy_year);
         while(copy_day <= 0) {
-                copy_day+=numberOfDays(copy_month-1);
                 copy_month--;
                 if(copy_month<=0) {
-                        copy_year--;
+                        temp2.setYear(copy_year--);
                         copy_month+=12;
                 }
+                temp2.setMonth(copy_month);
+                copy_day += temp2.numberOfDays();
         }
-        return Date(copy_month, copy_day, copy_year);
+        // cout << "before2"<<copy_month<< copy_day<< copy_year<<"\n";
+
+        // setMonth(copy_month);
+        temp2.setDay(copy_day);
+        return temp2;
 }
 
 /*A Function that returns the day of a date
@@ -167,38 +179,34 @@ string Date::dayName() {
                              "Thursday",
                              "Friday",
                              "Saturday",};
-        //如果是閏年，2月就多加1天變成29天
         d = getWeekday();
         return weekdays[d];
 }
 string Date::monthName() {
         int m;
-        string weekdays[] = {"0",
-                             "January", "February", "March", "April",
-                             "May", "June", "July", "August",
-                             "September", "October", "November", "December"};
-        //如果是閏年，2月就多加1天變成29天
+        string months[] = {"0",
+                           "January", "February", "March", "April",
+                           "May", "June", "July", "August",
+                           "September", "October", "November", "December"};
         m = getMonth();
-        return weekdays[m];
+        return months[m];
 }
 int Date::getWeekday() {
-        int offset = 0;
-        //12個月各月的天數
+        //days
         int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        //如果是閏年，2月就多加1天變成29天
+        //add 1
         days[2] += isLeapYear(year);
-        //計算這一天是一年中的第幾天
-        int d, i;
-        d = day;
+        //count the # of whole year
+        int week_num, i;
+        week_num = day;
         for (i=0; i<month; i++) {
-                d += days[i];
+                week_num += days[i];
         }
-        //根據公式去計算這一天是星期幾
+        //count week #
         int tmp_year = year-1;
-        d += tmp_year + (tmp_year/4) - (tmp_year/100) + (tmp_year/400);
-        d += offset + 7; //此處+7是避免d算出來是負值的情況
-        d %= 7; //算出星期幾
-        return d;
+        week_num += tmp_year + (tmp_year/4) - (tmp_year/100) + (tmp_year/400);
+        week_num = (week_num+7)%7; //count week #
+        return week_num;
 }
 
 /* A Function to return the number of days in
@@ -217,11 +225,13 @@ int Date::getWeekday() {
     9                October     31
     10               November    30
     11               December    31*/
-int Date::numberOfDays(int m) {
-        //12個月各月的天數
+int Date::numberOfDays() {
+        int m;
+        //the days of each month
         int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        //如果是閏年，2月就多加1天變成29天
+        //add 1
         days[2] += isLeapYear(year);
+        m = getMonth();
         return days[m];
 }
 
@@ -239,23 +249,23 @@ int Date::numberOfDays(int m) {
  */
 void Date::printMonthCalendar() {
         int weekday = (getWeekday() - (day % 7) + 7 +1) % 7;
-        //開始印出月歷
+        //begin printf
         int i, count;
         cout << "--------------" << monthName() << "--------------\n";
         printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
-        //印出第一週的空白
+        //the #1 week blank
         for (i=0; i<weekday; i++) {
                 printf("%5s", " ");
         }
-        //印出每一天
-        for (i=1, count=weekday+1; i<=numberOfDays(month); i++, count++) {
+        //each day
+        for (i=1, count=weekday+1; i<=numberOfDays(); i++, count++) {
                 printf("%5d", i);
-                //處理換行
+                //\n
                 if (count % 7 == 0) {
                         printf("\n");
                 }
         }
-        //如果最後一天是星期六就不要再多印換行，以保持輸出的資料沒有多餘的空行
+        //if the lastest day is sat., then \n.
         if ((count-1) %7 != 0) {
                 printf("\n");
         }
