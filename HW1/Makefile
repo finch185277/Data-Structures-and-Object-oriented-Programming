@@ -1,7 +1,7 @@
-LIBS   = g++ # g++ -O2 -std=c++17 
+LIBS   = g++ # g++ -O2 -std=c++17
 
 
-all: main.cpp
+all: main.cpp 0616214_Date.cpp 
 		$(LIBS) -g -o main $^
 
 .PHONY: clean
