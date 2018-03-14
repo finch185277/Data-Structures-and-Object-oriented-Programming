@@ -5,7 +5,7 @@ using namespace std;
 // Driver Program to check your implementation
 int main()
 {
-        Date date1(3, 8, 2018);
+        Date date1(8, 3, 2018);
         Date date2 = date1.DateAfter(13);
         Date date3 = date1.DateBefore(25);
 
@@ -26,7 +26,7 @@ int main()
         // cout << date3.getDay() << "\n";
 
         cout << date1.numberOfDays() << endl;
-        cout << date2.dayName() << "\n";
+        cout << date2.dayOfWeek() << "\n";
         date3.printMonthCalendar();
 
         return 0;

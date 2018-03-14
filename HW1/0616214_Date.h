@@ -4,7 +4,7 @@ using namespace std;
 class Date
 {
 public:
-Date(int m, int d, int y);
+Date(int d, int m, int y);
 ~Date();
 
 /*Get function for accessing private member*/
@@ -37,7 +37,7 @@ Date DateBefore(int set_day);
     if the date is 8/3/2018, then the day() function
     should return "Thursday"
  */
-string dayName();
+string dayOfWeek();
 string monthName();
 
 /* A Function to return the number of days in

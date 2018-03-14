@@ -6,7 +6,7 @@ using namespace std;
 //========================= implementation ==============================
 //==============================================================================
 
-Date::Date(int m, int d, int y){
+Date::Date(int d, int m, int y){
         setMonth(m);
         setDay(d);
         setYear(y);
@@ -43,7 +43,7 @@ void Date::setYear(int set_year) {
     DateAfter(3) should return a date of 11/3/2018 */
 Date Date::DateAfter(int days) {
         int copy_year=year, copy_month=month, copy_day=day+days;
-        Date temp1(copy_month, copy_day, copy_year);
+        Date temp1(copy_day, copy_month, copy_year);
         while(copy_day>temp1.numberOfDays()) {
                 copy_day-=temp1.numberOfDays();
                 copy_month++;
@@ -67,7 +67,7 @@ Date Date::DateBefore(int days) {
         int copy_year = year, copy_month = month, copy_day = day - days;
         // cout << month <<day << year<<endl;
         // cout << "before1"<<copy_month<< copy_day<< copy_year<<"\n";
-        Date temp2(copy_month, copy_day, copy_year);
+        Date temp2(copy_day, copy_month, copy_year);
         while(copy_day <= 0) {
                 copy_month--;
                 if(copy_month<=0) {
@@ -90,7 +90,7 @@ Date Date::DateBefore(int days) {
     if the date is 8/3/2018, then the day() function
     should return "Thursday"
  */
-string Date::dayName() {
+string Date::dayOfWeek() {
         int d = 0;
         string weekdays[] = {"Sunday", "Monday",
                              "Tuesday",
