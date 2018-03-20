@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-        long long int case_count = 0, N = 0, row = 0, column = 0, initial = 0;
+        long long int case_count, N, row, column, initial;
         char t1, t2;
         bool flag;
 
@@ -13,16 +13,15 @@ int main()
         while(case_count--)
         {
                 cin >> t1 >> t2 >> N;
-
-                long long int arr[N+1][N+1];
+                vector<vector<long long int> > matrix(N+1, vector<long long int>(N+1, 0));
                 flag = true;
 
                 for(row = 1; row <= N; row++)
                 {
                         for(column = 1; column <= N; column++)
                         {
-                                cin >> arr[row][column];
-                                if(arr[row][column] < 0)
+                                cin >> matrix.at(row).at(column);
+                                if(matrix.at(row).at(column) < 0)
                                         flag = false;
                         }
                 }
@@ -31,7 +30,7 @@ int main()
                 {
                         for(column = 1; column <= N; column++)
                         {
-                                if(arr[row][column] != arr[N-row+1][N-column+1]) {
+                                if(matrix.at(row).at(column) != matrix.at(N-row+1).at(N-column+1)) {
                                         flag = false;
                                         break;
                                 }
