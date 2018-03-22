@@ -1,0 +1,3 @@
+# clang-format -i tem.cpp
+BasedOnStyle: WebKit
+IndentWidth: 4
