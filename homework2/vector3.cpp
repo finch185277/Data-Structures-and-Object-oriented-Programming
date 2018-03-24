@@ -1,13 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
-#include <math.h>
+#include <cmath>
 #include "vector3.h"
 
 using std::cin;
 using std::cout;
 using std::cerr;
 using std::endl;
+using std::exit;
 
 //****************************************************//
 //  You need to implement the following functions !!  //
