@@ -7,18 +7,24 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-vector<vector<int> > v(5001, vector<int>(2001,0));
+static vector<vector<int> > v(5001, vector<int>(2001,0));
 
-int main() {
+void create_vector() {
         v.at(1).at(0) = 1;
         for(int i = 2; i <= 5000; i++) {
                 for(int index = 0; index < 2000; index++) {
                         v.at(i).at(index) += v.at(i-1).at(index) + v.at(i-2).at(index);
+                        // using "+=" b/c using "=" would cause overwrited
+
                         v.at(i).at(index+1)+= v.at(i).at(index)/10;
                         v.at(i).at(index)%=10;
                 }
         }
+}
+
+int main() {
         int num;
+        create_vector();
         while (cin >> num) {
 
                 cout << "The Fibonacci number for " << num << " is ";
