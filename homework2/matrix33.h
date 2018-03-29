@@ -4,7 +4,7 @@
 
 class matrix33
 {
-public:
+private:
 vector3 v0;
 vector3 v1;
 vector3 v2;
