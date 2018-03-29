@@ -4,7 +4,7 @@
 
 class matrix33
 {
-private:
+public:
 vector3 v0;
 vector3 v1;
 vector3 v2;
@@ -51,6 +51,10 @@ void set(const vector3 &v0, const vector3 &v1, const vector3 &v2);
 
 // print matrix using std::cout
 void printMatrix() const;
+
+matrix33 transpose();
+
+matrix33 adjugate();
 
 matrix33 invert();
 

@@ -19,9 +19,9 @@ using std::exit;
 matrix33::matrix33()
 {
         vector3 init(0,0,0);
-        (*this).v0 = init;
-        (*this).v1 = init;
-        (*this).v2 = init;
+        (*this)[0] = init;
+        (*this)[1] = init;
+        (*this)[2] = init;
 }
 
 // constructor with initializing float values
@@ -72,33 +72,33 @@ matrix33 &matrix33::operator =  (const matrix33 &m2)
 }
 matrix33 &matrix33::operator += (const matrix33 &m2)
 {
-        (*this).v0 += m2.v0;
-        (*this).v1 += m2.v1;
-        (*this).v2 += m2.v2;
+        (*this)[0] += m2[0];
+        (*this)[1] += m2[1];
+        (*this)[2] += m2[2];
         return (*this);
 }
 matrix33 &matrix33::operator -= (const matrix33 &m2)
 {
-        (*this).v0 -= m2.v0;
-        (*this).v1 -= m2.v1;
-        (*this).v2 -= m2.v2;
+        (*this)[0] -= m2[0];
+        (*this)[1] -= m2[1];
+        (*this)[2] -= m2[2];
         return (*this);
 }
 matrix33 &matrix33::operator *= (const matrix33 &m2)
 {
         matrix33 m3;
 
-        m3.v0[0] = (((*this).v0[0] * m2.v0[0]) + ((*this).v1[0] * m2.v0[1]) + ((*this).v2[0] * m2.v0[2]));
-        m3.v1[0] = (((*this).v0[0] * m2.v1[0]) + ((*this).v1[0] * m2.v1[1]) + ((*this).v2[0] * m2.v1[2]));
-        m3.v2[0] = (((*this).v0[0] * m2.v2[0]) + ((*this).v1[0] * m2.v2[1]) + ((*this).v2[0] * m2.v2[2]));
+        m3[0][0] = ((*this)[0][0] * m2[0][0] + (*this)[1][0] * m2[0][1] + (*this)[2][0] * m2[0][2]);
+        m3[1][0] = ((*this)[0][0] * m2[1][0] + (*this)[1][0] * m2[1][1] + (*this)[2][0] * m2[1][2]);
+        m3[2][0] = ((*this)[0][0] * m2[2][0] + (*this)[1][0] * m2[2][1] + (*this)[2][0] * m2[2][2]);
 
-        m3.v0[1] = (((*this).v0[1] * m2.v0[0]) + ((*this).v1[1] * m2.v0[1]) + ((*this).v2[1] * m2.v0[2]));
-        m3.v1[1] = (((*this).v0[1] * m2.v1[0]) + ((*this).v1[1] * m2.v1[1]) + ((*this).v2[1] * m2.v1[2]));
-        m3.v2[1] = (((*this).v0[1] * m2.v2[0]) + ((*this).v1[1] * m2.v2[1]) + ((*this).v2[1] * m2.v2[2]));
+        m3[0][1] = ((*this)[0][1] * m2[0][0] + (*this)[1][1] * m2[0][1] + (*this)[2][1] * m2[0][2]);
+        m3[1][1] = ((*this)[0][1] * m2[1][0] + (*this)[1][1] * m2[1][1] + (*this)[2][1] * m2[1][2]);
+        m3[2][1] = ((*this)[0][1] * m2[2][0] + (*this)[1][1] * m2[2][1] + (*this)[2][1] * m2[2][2]);
 
-        m3.v0[2] = (((*this).v0[2] * m2.v0[0]) + ((*this).v1[2] * m2.v0[1]) + ((*this).v2[2] * m2.v0[2]));
-        m3.v1[2] = (((*this).v0[2] * m2.v1[0]) + ((*this).v1[2] * m2.v1[1]) + ((*this).v2[2] * m2.v1[2]));
-        m3.v2[2] = (((*this).v0[2] * m2.v2[0]) + ((*this).v1[2] * m2.v2[1]) + ((*this).v2[2] * m2.v2[2]));
+        m3[0][2] = ((*this)[0][2] * m2[0][0] + (*this)[1][2] * m2[0][1] + (*this)[2][2] * m2[0][2]);
+        m3[1][2] = ((*this)[0][2] * m2[1][0] + (*this)[1][2] * m2[1][1] + (*this)[2][2] * m2[1][2]);
+        m3[2][2] = ((*this)[0][2] * m2[2][0] + (*this)[1][2] * m2[2][1] + (*this)[2][2] * m2[2][2]);
 
         (*this) = m3;
 
@@ -106,9 +106,9 @@ matrix33 &matrix33::operator *= (const matrix33 &m2)
 }
 matrix33 &matrix33::operator *= (float f)
 {
-        vector3 v0 = (*this).v0 * f;
-        vector3 v1 = (*this).v1 * f;
-        vector3 v2 = (*this).v2 * f;
+        vector3 v0 = (*this)[0] * f;
+        vector3 v1 = (*this)[1] * f;
+        vector3 v2 = (*this)[2] * f;
         set(v0, v1, v2);
         return (*this);
 }
@@ -118,38 +118,59 @@ matrix33 &matrix33::operator *= (float f)
 // set values (e.g. x = xIn, ...)
 void matrix33::set(const vector3 &v2_0, const vector3 &v2_1, const vector3 &v2_2)
 {
-        (*this).v0 = v2_0;
-        (*this).v1 = v2_1;
-        (*this).v2 = v2_2;
+        (*this)[0] = v2_0;
+        (*this)[1] = v2_1;
+        (*this)[2] = v2_2;
 }
 
 // print matrix using std::cout
 void matrix33::printMatrix() const
 {
-        cout << (*this).v0[0] << " " << (*this).v1[0] << " " << (*this).v2[0] << endl;
-        cout << (*this).v0[1] << " " << (*this).v1[1] << " " << (*this).v2[1] << endl;
-        cout << (*this).v0[2] << " " << (*this).v1[2] << " " << (*this).v2[2] << endl;
+        cout << (*this)[0][0] << " " << (*this)[1][0] << " " << (*this)[2][0] << endl;
+        cout << (*this)[0][1] << " " << (*this)[1][1] << " " << (*this)[2][1] << endl;
+        cout << (*this)[0][2] << " " << (*this)[1][2] << " " << (*this)[2][2] << endl;
+}
+
+matrix33 matrix33::transpose()
+{
+        matrix33 m2;
+        for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                        m2[i][j] = (*this)[j][i];
+                }
+        }
+        return m2;
+}
+
+matrix33 matrix33::adjugate()
+{
+        matrix33 m2;
+
+        m2[0][0] =  ((*this)[1][1] * (*this)[2][2] - (*this)[2][1] * (*this)[1][2]);
+        m2[1][0] = -((*this)[0][1] * (*this)[2][2] - (*this)[2][1] * (*this)[0][2]);
+        m2[2][0] =  ((*this)[0][1] * (*this)[1][2] - (*this)[1][1] * (*this)[0][2]);
+
+        m2[0][1] = -((*this)[1][0] * (*this)[2][2] - (*this)[2][0] * (*this)[1][2]);
+        m2[1][1] =  ((*this)[0][0] * (*this)[2][2] - (*this)[2][0] * (*this)[0][2]);
+        m2[2][1] = -((*this)[0][0] * (*this)[1][2] - (*this)[1][0] * (*this)[0][2]);
+
+        m2[0][2] =  ((*this)[1][0] * (*this)[2][1] - (*this)[2][0] * (*this)[1][1]);
+        m2[1][2] = -((*this)[0][0] * (*this)[2][1] - (*this)[2][0] * (*this)[0][1]);
+        m2[2][2] =  ((*this)[0][0] * (*this)[1][1] - (*this)[1][0] * (*this)[0][1]);
+
+        return m2.transpose();
 }
 
 matrix33 matrix33::invert()
 {
-        matrix33 m2;
-
-        m2.v0[0] = ((*this).v1[1] * (*this).v2[2]) - ((*this).v2[1] * (*this).v1[2]);
-        m2.v1[0] = ((*this).v0[1] * (*this).v2[2]) - ((*this).v2[1] * (*this).v0[2]);
-        m2.v2[0] = ((*this).v0[1] * (*this).v1[2]) - ((*this).v1[1] * (*this).v0[2]);
-
-        m2.v0[1] = ((*this).v1[0] * (*this).v2[2]) - ((*this).v2[0] * (*this).v1[2]);
-        m2.v1[1] = ((*this).v0[0] * (*this).v2[2]) - ((*this).v2[0] * (*this).v0[2]);
-        m2.v2[1] = ((*this).v0[0] * (*this).v1[2]) - ((*this).v1[0] * (*this).v0[2]);
-
-        m2.v0[2] = ((*this).v1[0] * (*this).v2[1]) - ((*this).v2[0] * (*this).v1[1]);
-        m2.v1[2] = ((*this).v0[0] * (*this).v2[1]) - ((*this).v2[0] * (*this).v0[1]);
-        m2.v2[2] = ((*this).v0[0] * (*this).v1[1]) - ((*this).v1[0] * (*this).v0[1]);
-
-        m2 /= (*this).determinant();
-
-        return m2;
+        if((*this).determinant() != 0)
+        {
+                matrix33 m2 = (*this).adjugate();
+                m2 *= 1/(*this).determinant();
+                return m2;
+        } else {
+                cout << "Warning: det = 0" << endl;
+        }
 }
 
 void matrix33::identity()
@@ -162,10 +183,11 @@ void matrix33::identity()
 
 float matrix33::determinant() const
 {
-        float a = ((*this).v1[1] * (*this).v2[2]) - ((*this).v2[1] * (*this).v1[2]);
-        float b = ((*this).v0[1] * (*this).v2[2]) - ((*this).v2[1] * (*this).v0[2]);
-        float c = ((*this).v0[1] * (*this).v1[2]) - ((*this).v1[1] * (*this).v0[2]);
-        float det = a + b + c;
+        float det = 0;
+        float a = ((*this)[0][0]) * ((*this)[1][1] * (*this)[2][2] - (*this)[2][1] * (*this)[1][2]);
+        float b = ((*this)[1][0]) * ((*this)[0][1] * (*this)[2][2] - (*this)[2][1] * (*this)[0][2]);
+        float c = ((*this)[2][0]) * ((*this)[0][1] * (*this)[1][2] - (*this)[1][1] * (*this)[0][2]);
+        det = a - b + c;
         return det;
 }
 
@@ -209,53 +231,44 @@ matrix33 operator * (const matrix33 &m1, const matrix33 &m2)
 {
         matrix33 m3;
 
-        // m2.v0[0] = ((m1.v0[0] * m2.v0[0]) + (m1.v1[0] * m2.v0[1]) + (m1.v2[0] * m2.v0[2]));
-        // m2.v1[0] = ((m1.v0[0] * m2.v1[0]) + (m1.v1[0] * m2.v1[1]) + (m1.v2[0] * m2.v1[2]));
-        // m2.v2[0] = ((m1.v0[0] * m2.v2[0]) + (m1.v1[0] * m2.v2[1]) + (m1.v2[0] * m2.v2[2]));
-        //
-        // m2.v0[1] = ((m1.v0[1] * m2.v0[0]) + (m1.v1[1] * m2.v0[1]) + (m1.v2[1] * m2.v0[2]));
-        // m2.v1[1] = ((m1.v0[1] * m2.v1[0]) + (m1.v1[1] * m2.v1[1]) + (m1.v2[1] * m2.v1[2]));
-        // m2.v2[1] = ((m1.v0[1] * m2.v2[0]) + (m1.v1[1] * m2.v2[1]) + (m1.v2[1] * m2.v2[2]));
-        //
-        // m2.v0[2] = ((m1.v0[2] * m2.v0[0]) + (m1.v1[2] * m2.v0[1]) + (m1.v2[2] * m2.v0[2]));
-        // m2.v1[2] = ((m1.v0[2] * m2.v1[0]) + (m1.v1[2] * m2.v1[1]) + (m1.v2[2] * m2.v1[2]));
-        // m2.v2[2] = ((m1.v0[2] * m2.v2[0]) + (m1.v1[2] * m2.v2[1]) + (m1.v2[2] * m2.v2[2]));
-        m2[0][0] = ((m1[0][0] * m2[0][0]) + (m1[1][0] * m2[0][1]) + (m1[2][0] * m2[0][2]));
-        m2[1][0] = ((m1[0][0] * m2[1][0]) + (m1[1][0] * m2[1][1]) + (m1[2][0] * m2[1][2]));
-        m2[2][0] = ((m1[0][0] * m2[2][0]) + (m1[1][0] * m2[2][1]) + (m1[2][0] * m2[2][2]));
-        m2[0][1] = ((m1[0][1] * m2[0][0]) + (m1[1][1] * m2[0][1]) + (m1[2][1] * m2[0][2]));
-        m2[1][1] = ((m1[0][1] * m2[1][0]) + (m1[1][1] * m2[1][1]) + (m1[2][1] * m2[1][2]));
-        m2[2][1] = ((m1[0][1] * m2[2][0]) + (m1[1][1] * m2[2][1]) + (m1[2][1] * m2[2][2]));
-        m2[0][2] = ((m1[0][2] * m2[0][0]) + (m1[1][2] * m2[0][1]) + (m1[2][2] * m2[0][2]));
-        m2[1][2] = ((m1[0][2] * m2[1][0]) + (m1[1][2] * m2[1][1]) + (m1[2][2] * m2[1][2]));
-        m2[2][2] = ((m1[0][2] * m2[2][0]) + (m1[1][2] * m2[2][1]) + (m1[2][2] * m2[2][2]));
+        m3[0][0] = (m1[0][0] * m2[0][0] + m1[1][0] * m2[0][1] + m1[2][0] * m2[0][2]);
+        m3[1][0] = (m1[0][0] * m2[1][0] + m1[1][0] * m2[1][1] + m1[2][0] * m2[1][2]);
+        m3[2][0] = (m1[0][0] * m2[2][0] + m1[1][0] * m2[2][1] + m1[2][0] * m2[2][2]);
+
+        m3[0][1] = (m1[0][1] * m2[0][0] + m1[1][1] * m2[0][1] + m1[2][1] * m2[0][2]);
+        m3[1][1] = (m1[0][1] * m2[1][0] + m1[1][1] * m2[1][1] + m1[2][1] * m2[1][2]);
+        m3[2][1] = (m1[0][1] * m2[2][0] + m1[1][1] * m2[2][1] + m1[2][1] * m2[2][2]);
+
+        m3[0][2] = (m1[0][2] * m2[0][0] + m1[1][2] * m2[0][1] + m1[2][2] * m2[0][2]);
+        m3[1][2] = (m1[0][2] * m2[1][0] + m1[1][2] * m2[1][1] + m1[2][2] * m2[1][2]);
+        m3[2][2] = (m1[0][2] * m2[2][0] + m1[1][2] * m2[2][1] + m1[2][2] * m2[2][2]);
 
         return m3;
 }
 matrix33 operator * (const matrix33 &m, float f)
 {
         matrix33 m2;
-        vector3 v2_0 = m.v0 * f;
-        vector3 v2_1 = m.v1 * f;
-        vector3 v2_2 = m.v2 * f;
+        vector3 v2_0 = m[0] * f;
+        vector3 v2_1 = m[1] * f;
+        vector3 v2_2 = m[2] * f;
         m2.set(v2_0, v2_1, v2_2);
         return m2;
 }
-matrix33 operator * (float f, const matrix33 &v)
+matrix33 operator * (float f, const matrix33 &m)
 {
         matrix33 m2;
-        vector3 v2_0 = f * m.v0;
-        vector3 v2_1 = f * m.v1;
-        vector3 v2_2 = f * m.v2;
+        vector3 v2_0 = f * m[0];
+        vector3 v2_1 = f * m[1];
+        vector3 v2_2 = f * m[2];
         m2.set(v2_0, v2_1, v2_2);
         return m2;
 }
-matrix33 operator / (const matrix33 &v, float f)
+matrix33 operator / (const matrix33 &m, float f)
 {
         matrix33 m2;
-        vector3 v2_0 = m.v0 / f;
-        vector3 v2_1 = m.v1 / f;
-        vector3 v2_2 = m.v2 / f;
+        vector3 v2_0 = m[0] / f;
+        vector3 v2_1 = m[1] / f;
+        vector3 v2_2 = m[2] / f;
         m2.set(v2_0, v2_1, v2_2);
         return m2;
 }

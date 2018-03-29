@@ -3,7 +3,7 @@
 
 class vector3
 {
-private:
+public:
 /* data members */
 float x, y, z;
 
