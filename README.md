@@ -17,8 +17,8 @@
 |  5  |   UVa   495   | Fibonacci Freeze |
 
 ## HW1
-ref:https://dotblogs.com.tw/jses88001/2013/04/22/102045
+- ref:https://dotblogs.com.tw/jses88001/2013/04/22/102045
 
 ## HW2
-ref:https://www.wikihow.com/Find-the-Inverse-of-a-3x3-Matrix
-ref:https://github.com/abc225666/Code/
+- ref:https://www.wikihow.com/Find-the-Inverse-of-a-3x3-Matrix
+- ref:https://github.com/abc225666/Code/
