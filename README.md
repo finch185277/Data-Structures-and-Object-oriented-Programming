@@ -9,8 +9,8 @@
 - lab5 : UVa   495 Fibonacci Freeze
 - lab6 : UVa 10107 What is the Median?
 
-| lab |      From     |       Cool          |
-| --- |:-------------:| -------------------:|
+| lab |      From     |       Name          |
+| --- |:-------------:|:------------------- |
 |  1  |   UVa 11332   | Summing Digits      |
 |  2  |   UVa 11461   | Square Numbers      |
 |  3  |   UVa 10189   | Minesweeper         |
