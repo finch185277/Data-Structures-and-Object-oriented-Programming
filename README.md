@@ -7,14 +7,16 @@
 - lab3 : UVa 10189 Minesweeper     
 - lab4 : UVa 11349 Symmetric Matrix
 - lab5 : UVa   495 Fibonacci Freeze
+- lab6 : UVa 10107 What is the Median?
 
-| lab |      From     |       Cool       |
-| --- |:-------------:| ----------------:|
-|  1  |   UVa 11332   | Summing Digits   |
-|  2  |   UVa 11461   | Square Numbers   |
-|  3  |   UVa 10189   | Minesweeper      |
-|  4  |   UVa 11349   | Symmetric Matrix |
-|  5  |   UVa   495   | Fibonacci Freeze |
+| lab |      From     |       Cool          |
+| --- |:-------------:| -------------------:|
+|  1  |   UVa 11332   | Summing Digits      |
+|  2  |   UVa 11461   | Square Numbers      |
+|  3  |   UVa 10189   | Minesweeper         |
+|  4  |   UVa 11349   | Symmetric Matrix    |
+|  5  |   UVa   495   | Fibonacci Freeze    |
+|  6  |   UVa 10107   | What is the Median? |
 
 ## HW1
 - ref:https://dotblogs.com.tw/jses88001/2013/04/22/102045
