@@ -8,6 +8,7 @@
 - lab4 : UVa 11349 Symmetric Matrix
 - lab5 : UVa   495 Fibonacci Freeze
 - lab6 : UVa 10107 What is the Median?
+- lab7 : UVa 11764 Jumping Mario
 
 | lab |      From     |       Name          |
 | --- |:-------------:|:------------------- |
@@ -17,6 +18,7 @@
 |  4  |   UVa 11349   | Symmetric Matrix    |
 |  5  |   UVa   495   | Fibonacci Freeze    |
 |  6  |   UVa 10107   | What is the Median? |
+|  7  |   UVa 11764   | Jumping Mario       |
 
 ## HW1
 - ref:https://dotblogs.com.tw/jses88001/2013/04/22/102045
