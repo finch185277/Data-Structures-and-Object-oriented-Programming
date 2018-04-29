@@ -21,8 +21,13 @@
 |  7  |   UVa 11764   | Jumping Mario       |
 
 ## HW1
-- ref:https://dotblogs.com.tw/jses88001/2013/04/22/102045
+- ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
 
 ## HW2
-- ref:https://www.wikihow.com/Find-the-Inverse-of-a-3x3-Matrix
-- ref:https://github.com/abc225666/Code/
+- ref: https://www.wikihow.com/Find-the-Inverse-of-a-3x3-Matrix
+- ref: https://github.com/abc225666/Code/
+
+## HW3
+- ref: https://stackoverflow.com/questions/152555/h-or-hpp-for-your-class-definitions
+- ref:  https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
+- ref: https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl
