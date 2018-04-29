@@ -23,7 +23,7 @@ Link_List(const Link_List<T> &);                           // copy constructor
 ~Link_List();
 int getSize() const;
 
-const Link_List &operator=(const Link_List<T> &);          // assignment operator
+const Link_List<T> &operator=(const Link_List<T> &);          // assignment operator
 bool operator==(const Link_List<T> &) const;               // equality operator
 bool operator!=(const Link_List<T> &right) const           // inequality operator
 {
@@ -41,12 +41,24 @@ bool delete_node(int index);                            // delete the i_th node
 private:
 int size;
 Int_Node<T> *head, *tail;                                  // pointer to the first and the last element of Link_List
-
-template <typename S = int>
-friend ostream &operator<<(ostream &, const Link_List<S> &);       // print all integers in the list
-template <typename S = int>
-friend istream &operator>>(istream &, Link_List<S> &);             // input a value at the back of the list, like insert_node(val);
 };
-
+template <typename T = int>
+std::ostream &operator<<(std::ostream &output, const Link_List<T> &list)
+// print all integers in the list
+{
+        for(int i = 0; i < list.getSize(); i++) {
+                output << list[i] << " ";
+        }
+        return output;
+}
+template <typename T = int>
+std::istream &operator>>(std::istream &input, Link_List<T> &list)
+// input a value at the back of the list, like insert_node(val);
+{
+        int new_value;
+        input >> new_value;
+        list.insert_node(new_value);
+        return input;
+}
 
 #endif // LINK_LIST
