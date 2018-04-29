@@ -51,7 +51,7 @@ int Link_List<T>::getSize() const
         return size;
 }
 template < typename T >
-const Link_List<T> &Link_List::operator=(const Link_List &rhs) // rhs
+const Link_List<T> &Link_List<T>::operator=(const Link_List<T> &rhs) // rhs
 // assignment operator
 {
         Int_Node<T> *new_head = NULL;
@@ -60,7 +60,7 @@ const Link_List<T> &Link_List::operator=(const Link_List &rhs) // rhs
 
         while(nptr != NULL)
         {
-                Int_Node<T> *new_node = new Int_Node(nptr->value);
+                Int_Node<T> *new_node = new Int_Node<T>(nptr->value);
                 if(new_head == NULL)
                 {
                         new_head = new_node;
@@ -212,24 +212,3 @@ bool Link_List<T>::delete_node(int index)
         }
 }
 //-------------- def func> -------------------------
-
-//------------- <IO ----------------------------------
-template < typename T >
-std::ostream &operator<<(std::ostream &output, const Link_List<T> &list)
-// print all integers in the list
-{
-        for(int i = 0; i < list.getSize(); i++) {
-                output << list[i] << " ";
-        }
-        return output;
-}
-template < typename T >
-std::istream &operator>>(std::istream &input, Link_List<T> &list)
-// input a value at the back of the list, like insert_node(val);
-{
-        int new_value;
-        input >> new_value;
-        list.insert_node(new_value);
-        return input;
-}
-//-------------- IO> -------------------------------
