@@ -2,7 +2,8 @@
 #define LINK_LIST
 
 #include <iostream>
-// using namespace std;
+// using namespace std; // no need
+// friend ostream istream no need
 
 template < typename T = int>
 struct Int_Node
@@ -42,24 +43,6 @@ private:
 int size;
 Int_Node<T> *head, *tail;                                  // pointer to the first and the last element of Link_List
 };
-template <typename T = int>
-std::ostream &operator<<(std::ostream &output, const Link_List<T> &list)
-// print all integers in the list
-{
-        for(int i = 0; i < list.getSize(); i++) {
-                output << list[i] << " ";
-        }
-        return output;
-}
-template <typename T = int>
-std::istream &operator>>(std::istream &input, Link_List<T> &list)
-// input a value at the back of the list, like insert_node(val);
-{
-        int new_value;
-        input >> new_value;
-        list.insert_node(new_value);
-        return input;
-}
 
 #include "0616214_Link_List.cpp"
 #endif // LINK_LIST
