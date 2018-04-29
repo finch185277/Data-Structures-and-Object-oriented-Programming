@@ -1,7 +1,7 @@
 #include <iostream>
 #include <exception>
-#include "0616214_Link_List.h"
-// using namespace std;
+#include "0616214_Link_List.hpp" // .hpp for C++, .h for C
+// using namespace std; // no need
 
 //--------- <Node ---------------
 template < typename T >
@@ -211,3 +211,24 @@ bool Link_List<T>::delete_node(int index)
         }
 }
 //-------------- def func> -------------------------
+
+//-------------- <IO --------------------
+template <typename T = int>
+std::ostream &operator<<(std::ostream &output, const Link_List<T> &list)
+// print all integers in the list
+{
+        for(int i = 0; i < list.getSize(); i++) {
+                output << list[i] << " ";
+        }
+        return output;
+}
+template <typename T = int>
+std::istream &operator>>(std::istream &input, Link_List<T> &list)
+// input a value at the back of the list, like insert_node(val);
+{
+        int new_value;
+        input >> new_value;
+        list.insert_node(new_value);
+        return input;
+}
+//-------------- IO> --------------------
