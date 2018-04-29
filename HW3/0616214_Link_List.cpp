@@ -1,23 +1,22 @@
 #include <iostream>
 #include <exception>
 #include "0616214_Link_List.h"
-using namespace std;
-
+// using namespace std;
 
 //--------- <Node ---------------
 template < typename T >
 Int_Node<T>::Int_Node()
 {
-        this->pre = NULL;
-        this->next = NULL;
+        this->pre = nullptr;
+        this->next = nullptr;
         this->value = 0;
 }
 
 template < typename T >
 Int_Node<T>::Int_Node(T value)
 {
-        this->pre = NULL;
-        this->next = NULL;
+        this->pre = nullptr;
+        this->next = nullptr;
         this->value = value;
 }
 //-------- Node> ------------------
@@ -26,7 +25,7 @@ Int_Node<T>::Int_Node(T value)
 // public:
 template < typename T >
 Link_List<T>::Link_List()
-        : size(0), head(NULL), tail(NULL)
+        : size(0), head(nullptr), tail(nullptr)
 // default constructor
 {
 }
@@ -54,14 +53,14 @@ template < typename T >
 const Link_List<T> &Link_List<T>::operator=(const Link_List<T> &rhs) // rhs
 // assignment operator
 {
-        Int_Node<T> *new_head = NULL;
-        Int_Node<T> *new_tail = NULL;
+        Int_Node<T> *new_head = nullptr;
+        Int_Node<T> *new_tail = nullptr;
         Int_Node<T> *nptr = rhs.head;
 
-        while(nptr != NULL)
+        while(nptr != nullptr)
         {
                 Int_Node<T> *new_node = new Int_Node<T>(nptr->value);
-                if(new_head == NULL)
+                if(new_head == nullptr)
                 {
                         new_head = new_node;
                         new_tail = new_node;
@@ -87,7 +86,7 @@ bool Link_List<T>::operator==(const Link_List &rhs) const
 
         Int_Node<T> *n1 = this->head;
         Int_Node<T> *n2 = rhs.head;
-        while(n1 != NULL && n2 != NULL) {
+        while(n1 != nullptr && n2 != nullptr) {
                 if(n1->value != n2->value) return false;
                 n1 = n1->next;
                 n2 = n2->next;
@@ -102,7 +101,7 @@ bool Link_List<T>::operator==(const Link_List &rhs) const
 // }
 
 template < typename T >
-int &Link_List<T>::operator[](int index)
+T &Link_List<T>::operator[](int index)
 // subscript operator for non-const objects
 {
         if(index > getSize() || index < 0) {
@@ -118,7 +117,7 @@ int &Link_List<T>::operator[](int index)
         }
 }
 template < typename T >
-int Link_List<T>::operator[](int index) const
+T Link_List<T>::operator[](int index) const
 // subscript operator for const objects
 {
         if(index > getSize() || index < 0) {
@@ -162,7 +161,7 @@ bool Link_List<T>::delete_node()
 {
         try{
                 Int_Node<T> *nptr = this->tail;
-                nptr->pre->next = NULL;
+                nptr->pre->next = nullptr;
                 delete nptr;
                 this->size--;
                 return true;
@@ -187,7 +186,7 @@ bool Link_List< T >::insert_node(int index, T value)
                 this->size++;
                 return true;
         }
-        catch(exception &) {
+        catch(std::exception &) {
                 return false;
         }
 }
