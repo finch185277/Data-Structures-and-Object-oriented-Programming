@@ -9,6 +9,8 @@
 - lab5 : UVa   495 Fibonacci Freeze
 - lab6 : UVa 10107 What is the Median?
 - lab7 : UVa 11764 Jumping Mario
+- lab8 : UVa 10700 Camel trading
+- lab9 : UVa 10313 Pay the Price
 
 | lab |      From     |       Name          |
 | --- |:-------------:|:------------------- |
@@ -19,6 +21,8 @@
 |  5  |   UVa   495   | Fibonacci Freeze    |
 |  6  |   UVa 10107   | What is the Median? |
 |  7  |   UVa 11764   | Jumping Mario       |
+|  8  |   UVa 10700   | Camel trading       |
+|  9  |   UVa 10313   | Pay the Price       |
 
 ## HW1
 - ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
