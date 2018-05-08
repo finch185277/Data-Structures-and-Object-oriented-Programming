@@ -2,15 +2,16 @@
 ### This is for OOP practice.
 
 ## lab
-- lab1 : UVa 11332 Summing Digits  
-- lab2 : UVa 11461 Square Numbers  
-- lab3 : UVa 10189 Minesweeper     
-- lab4 : UVa 11349 Symmetric Matrix
-- lab5 : UVa   495 Fibonacci Freeze
-- lab6 : UVa 10107 What is the Median?
-- lab7 : UVa 11764 Jumping Mario
-- lab8 : UVa 10700 Camel trading
-- lab9 : UVa 10313 Pay the Price
+- lab1  : UVa 11332 Summing Digits  
+- lab2  : UVa 11461 Square Numbers  
+- lab3  : UVa 10189 Minesweeper     
+- lab4  : UVa 11349 Symmetric Matrix
+- lab5  : UVa   495 Fibonacci Freeze
+- lab6  : UVa 10107 What is the Median?
+- lab7  : UVa 11764 Jumping Mario
+- lab8  : UVa 10700 Camel trading
+- lab9  : UVa 10313 Pay the Price
+- lab10 : UVa 10409 Die Game
 
 | lab |      From     |       Name          |
 | --- |:-------------:|:------------------- |
@@ -23,6 +24,7 @@
 |  7  |   UVa 11764   | Jumping Mario       |
 |  8  |   UVa 10700   | Camel trading       |
 |  9  |   UVa 10313   | Pay the Price       |
+|  10 |   UVa 10409   | Die Game            |
 
 ## HW1
 - ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
