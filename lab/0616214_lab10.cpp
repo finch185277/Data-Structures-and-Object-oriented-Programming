@@ -8,11 +8,11 @@ public:
     Dice()
     {
         top = 1;
-        bottom = 6;
         north = 2;
+        west = 3;
+        bottom = 6;
         south = 5;
         east = 4;
-        west = 3;
     }
     void rotate(std::string& command)
     {
