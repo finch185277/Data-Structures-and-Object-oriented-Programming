@@ -1,8 +1,8 @@
-LIBS   = g++ # g++ -O2 -std=c++17
+CXX = g++ # g++ -O2 -std=c++17
 
 
-all: main.cpp 0616214_Date.cpp 
-		$(LIBS) -g -o main $^
+all: main.cpp 0616214_Date.cpp
+		$(CXX) -g -o main $^
 
 .PHONY: clean
 clean:

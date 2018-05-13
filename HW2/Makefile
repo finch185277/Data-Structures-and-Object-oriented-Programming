@@ -1,8 +1,8 @@
-LIBS   = g++ # g++ -O2 -std=c++17
+CXX   = g++ # g++ -O2 -std=c++17
 
 all: main.cpp vector3.cpp matrix33.cpp
-			$(LIBS) -g -o main $^
+			$(CXX) -g -o main $^
 
 .PHONY: clean
-	clean:
+clean:
 			rm -rf main
