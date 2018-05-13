@@ -83,7 +83,7 @@ public:
     }
     inline const int hash(std::string k) const
     {
-        int seed = 131;
+        int seed = 113;
         unsigned int index = 0;
 
         for (int i = 0; i < k.size(); i++)
