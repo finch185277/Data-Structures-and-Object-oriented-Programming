@@ -37,3 +37,7 @@
 - ref: https://stackoverflow.com/questions/152555/h-or-hpp-for-your-class-definitions
 - ref:  https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 - ref: https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl
+
+## HW4
+- ref: https://github.com/fsh0524/assignment
+- ref: https://github.com/katelo731/Hash_Table
