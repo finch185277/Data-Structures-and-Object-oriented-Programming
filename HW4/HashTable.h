@@ -9,7 +9,7 @@
 
 class HashTable {
 private:
-    static const int MAXSIZE = 10000;
+    static const int MAXSIZE = 9973;
     struct data {
         std::string key = "", gender = "";
         int height = 0, weight = 0;
@@ -87,7 +87,7 @@ public:
         unsigned int index = 0;
 
         for (int i = 0; i < k.size(); i++)
-            index = (index * seed) + k[i];
+            index = ((index * seed) + k[i]) % MAXSIZE;
 
         return (index % MAXSIZE);
     }
