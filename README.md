@@ -12,19 +12,21 @@
 - lab8  : UVa 10700 Camel trading
 - lab9  : UVa 10313 Pay the Price
 - lab10 : UVa 10409 Die Game
+- lab11 : UVa 10912	Simple Minded Hashing
 
-| lab |      From     |       Name          |
-| --- |:-------------:|:------------------- |
-|  1  |   UVa 11332   | Summing Digits      |
-|  2  |   UVa 11461   | Square Numbers      |
-|  3  |   UVa 10189   | Minesweeper         |
-|  4  |   UVa 11349   | Symmetric Matrix    |
-|  5  |   UVa   495   | Fibonacci Freeze    |
-|  6  |   UVa 10107   | What is the Median? |
-|  7  |   UVa 11764   | Jumping Mario       |
-|  8  |   UVa 10700   | Camel trading       |
-|  9  |   UVa 10313   | Pay the Price       |
-|  10 |   UVa 10409   | Die Game            |
+| lab |      From     |       Name            |
+| --- |:-------------:|:--------------------- |
+|  1  |   UVa 11332   | Summing Digits        |
+|  2  |   UVa 11461   | Square Numbers        |
+|  3  |   UVa 10189   | Minesweeper           |
+|  4  |   UVa 11349   | Symmetric Matrix      |
+|  5  |   UVa   495   | Fibonacci Freeze      |
+|  6  |   UVa 10107   | What is the Median?   |
+|  7  |   UVa 11764   | Jumping Mario         |
+|  8  |   UVa 10700   | Camel trading         |
+|  9  |   UVa 10313   | Pay the Price         |
+|  10 |   UVa 10409   | Die Game              |
+|  11 |   UVa 10912	  | Simple Minded Hashing |
 
 ## HW1
 - ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
