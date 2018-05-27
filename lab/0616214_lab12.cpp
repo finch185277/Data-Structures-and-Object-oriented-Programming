@@ -5,7 +5,7 @@
 static int sum[2750000];
 // sum[n], n! has # of prime
 // input = #, find n
-//
+
 // ex. input = 7, find n = 6
 //     6!  = 6*5*4*3*2*1
 //     ans = {6 = (3,2),5,(2,2),3,2}
