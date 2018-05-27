@@ -13,6 +13,7 @@
 - lab9  : UVa 10313 Pay the Price
 - lab10 : UVa 10409 Die Game
 - lab11 : UVa 10912	Simple Minded Hashing
+- lab12 : UVa 10856 Recover Factorial
 
 | lab |      From     |       Name            |
 | --- |:-------------:|:--------------------- |
@@ -27,6 +28,7 @@
 |  9  |   UVa 10313   | Pay the Price         |
 |  10 |   UVa 10409   | Die Game              |
 |  11 |   UVa 10912	  | Simple Minded Hashing |
+|  12 |   UVa 10856   | Recover Factorial     |
 
 ## HW1
 - ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
