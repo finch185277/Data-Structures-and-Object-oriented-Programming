@@ -1,55 +1,52 @@
-// ref: http://knightzone.org/?p=3155
-
+#include <algorithm>
+#include <cstring>
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <vector>
 
-class Dice {
+class Die {
 public:
-    Dice()
+    Die()
     {
-        top = 1;
-        north = 2;
-        west = 3;
-        bottom = 6;
-        south = 5;
-        east = 4;
+        top = 1, bottom = 6;
+        north = 2, south = 5;
+        west = 3, east = 4;
     }
     void rotate(std::string& command)
     {
         if (command == "north") {
-            std::swap(top, north);
-            std::swap(bottom, south);
-            std::swap(top, bottom);
+            std::swap(north, top);
+            std::swap(south, bottom);
+            std::swap(bottom, top);
         } else if (command == "south") {
-            std::swap(top, south);
-            std::swap(bottom, north);
-            std::swap(top, bottom);
-        } else if (command == "east") {
-            std::swap(top, east);
-            std::swap(bottom, west);
-            std::swap(top, bottom);
+            std::swap(south, top);
+            std::swap(north, bottom);
+            std::swap(bottom, top);
         } else if (command == "west") {
-            std::swap(top, west);
-            std::swap(bottom, east);
-            std::swap(top, bottom);
+            std::swap(west, top);
+            std::swap(east, bottom);
+            std::swap(bottom, top);
+        } else if (command == "east") {
+            std::swap(east, top);
+            std::swap(west, bottom);
+            std::swap(bottom, top);
         }
     }
     int top, bottom;
     int north, south;
-    int east, west;
+    int west, east;
 };
-
 int main()
 {
-    int command_number;
-    while (std::cin >> command_number && command_number != 0) {
-        Dice dice;
-        for (int i = 0; i < command_number; i++) {
-            std::string command;
-            std::cin >> command;
-            dice.rotate(command);
+    int cmdc;
+    while (std::cin >> cmdc && cmdc > 0) {
+        Die dice;
+        std::string s;
+        while (cmdc--) {
+            std::cin >> s;
+            dice.rotate(s);
         }
-        std::cout << dice.top << std::endl;
+        std::cout << dice.top << '\n';
     }
-    return 0;
 }
