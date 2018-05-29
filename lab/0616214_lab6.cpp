@@ -1,28 +1,22 @@
-#include <iostream>
-#include <cstdlib>
-#include <vector>
-#include <string>
 #include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
-int main() {
-        long int n;
-        std::vector<long int> output;
-        while(!(std::cin >> n).eof()) {
-                long int a, b;
-                int length;
-
-                output.push_back(n);
-                length = output.size();
-
-                sort(output.begin(), output.end()); // default is bool (i < j)
-                if(length & 1) {  // if odd (bitwise is hard to read XD)
-                        std::cout << output.at(length / 2) << std::endl;
-                }
-                else{
-                        a = output.at((length / 2) - 1);
-                        b = output.at(length / 2) + a; // sum of two int
-                        std::cout << (b >> 1) << std::endl;
-                }
+int main()
+{
+    std::vector<long long> set;
+    long long num;
+    while (std::cin >> num) {
+        set.push_back(num);
+        std::sort(set.begin(), set.end());
+        if (set.size() & 1) // if odd
+        {
+            std::cout << set.at(set.size() / 2) << '\n';
+        } else {
+            std::cout << (set.at(set.size() / 2) + set.at(set.size() / 2 - 1)) / 2 << '\n';
         }
-        return 0;
+    }
 }
