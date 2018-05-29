@@ -34,11 +34,11 @@ int main()
             // 351 for 1+2+...+26 = 351
             int res = 0;
             std::cout << "Case " << case_count++;
-            std::cout << ": " << res << std::endl;
+            std::cout << ": " << res << '\n';
         } else {
             int res = hash(L, S, 0);
             std::cout << "Case " << case_count++;
-            std::cout << ": " << res << std::endl;
+            std::cout << ": " << res << '\n';
         }
     }
     return 0;
