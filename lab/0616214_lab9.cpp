@@ -1,20 +1,19 @@
-// ref: https://github.com/selvpole/OOP_HW_practice/blob/master/Lab/Lab09_Pay_the_Price/0616221_lab9.cpp
+#include <algorithm>
+#include <cstring>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
-const int max_price = 300;
-long long ways[max_price + 1][max_price + 1];
+static long long ways[301][301];
 
-void make_table()
+void build()
 {
-    // make the table
-    for (int i = 0; i <= max_price; i++)
-        ways[i][0] = 0;
-    for (int j = 0; j <= max_price; j++)
-        ways[0][j] = 1;
-    for (int j = 1; j <= max_price; j++) {
-        for (int i = j; i <= max_price; i++) {
+    memset(ways, 0, sizeof ways);
+    ways[0][0] = 1;
+
+    for (int j = 1; j < 301; j++) {
+        for (int i = j; i < 301; i++) {
             if (i - j < j)
                 ways[i][j] = ways[i - j][i - j] + ways[i][j - 1];
             else
@@ -22,26 +21,29 @@ void make_table()
         }
     }
 }
+
 int main()
 {
-    make_table();
+    build();
     std::string s;
-    while (getline(std::cin, s)) {
+    while (std::getline(std::cin, s)) {
+        int num, a = -1, b = -1;
         std::stringstream ss(s);
-        int n, l1 = -1, l2 = -1;
-        ss >> n;
-        ss >> l1;
-        ss >> l2;
-        l2 > n ? l2 = n : l2 = l2;
-        l1 > n&& l2 >= 0 ? l1 = n + 1 : l1 = l1;
-        l1 > n&& l2 < 0 ? l1 = n : l1 = l1;
-        if (l2 >= 0 && l1 == 0) // in case (l1 - 1) < 0
-            std::cout << ways[n][l2] << '\n';
-        else if (l2 >= 0)
-            std::cout << ways[n][l2] - ways[n][l1 - 1] << '\n';
-        else if (l1 >= 0)
-            std::cout << ways[n][l1] << '\n';
+        ss >> num;
+        ss >> a;
+        ss >> b;
+        b > num ? b = num : b = b;
+        a > num&& b >= 0 ? a = num + 1 : a = a;
+        a > num&& b < 0 ? a = num : a = a;
+
+        if (b >= 0 && a == 0)
+            std::cout << ways[num][b] << '\n';
+        else if (b >= 0)
+            std::cout << ways[num][b] - ways[num][a - 1] << '\n';
+        else if (a >= 0)
+            std::cout << ways[num][a] << '\n';
         else
-            std::cout << ways[n][n] << '\n';
+            std::cout << ways[num][num] << '\n';
     }
+    return 0;
 }
