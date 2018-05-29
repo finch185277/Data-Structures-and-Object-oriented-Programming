@@ -1,46 +1,47 @@
+#include <cstring>
 #include <iostream>
-#include <cstdlib>
+#include <sstream>
+#include <string>
 #include <vector>
 
-using std::vector;
-using std::cin;
-using std::cout;
-using std::endl;
+static int fab[5001][2001];
 
-static vector<vector<int> > v(5001, vector<int>(2001,0));
-
-void create_vector() {
-        v.at(1).at(0) = 1;
-        for(int i = 2; i <= 5000; i++) {
-                for(int index = 0; index < 2000; index++) {
-                        v.at(i).at(index) += v.at(i-1).at(index) + v.at(i-2).at(index);
-                        // using "+=" b/c using "=" would cause overwrited
-
-                        v.at(i).at(index+1)+= v.at(i).at(index)/10;
-                        v.at(i).at(index)%=10;
-                }
+void build()
+{
+    memset(fab, 0, sizeof fab);
+    fab[1][0] = 1;
+    for (int i = 2; i < 5001; i++) {
+        for (int j = 0; j < 2001; j++) {
+            if (fab[i - 1][j] + fab[i - 2][j] > 0) {
+                fab[i][j] += fab[i - 1][j] + fab[i - 2][j];
+                fab[i][j + 1] += fab[i][j] / 10;
+                fab[i][j] %= 10;
+            } else
+                continue;
         }
+    }
 }
 
-int main() {
-        int num;
-        create_vector();
-        while (cin >> num) {
-
-                cout << "The Fibonacci number for " << num << " is ";
-                int dc = 0; // dc = digit_count
-                for( dc = 1999; dc >= 0; dc-- )
-                {
-                        if( v.at(num).at(dc) != 0 )
-                                break;
-                }
-                if(dc == -1) cout << "0";
-                else {
-                        for(; dc >= 0; dc--)
-                                cout << v.at(num).at(dc);
-                }
-                cout << endl;
-
+int main()
+{
+    int num;
+    build();
+    while (std::cin >> num) {
+        int digit = 2000;
+        for (; digit >= 0; digit--) {
+            if (fab[num][digit] > 0)
+                break;
         }
-        return 0;
+        digit++;
+        std::cout << "The Fibonacci number for " << num << " is ";
+        if (digit == 0)
+            std::cout << '0';
+        else {
+            for (; digit > 0; digit--) {
+                std::cout << fab[num][digit - 1];
+            }
+        }
+        std::cout << '\n';
+    }
+    return 0;
 }
