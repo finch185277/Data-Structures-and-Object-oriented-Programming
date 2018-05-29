@@ -1,47 +1,38 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <cstring>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 int main()
 {
-        long long int case_count, N, row, column, initial;
-        char t1, t2;
-        bool flag;
-
-        cin >> case_count;
-
-        initial = case_count;
-        while(case_count--)
-        {
-                cin >> t1 >> t2 >> N;
-                vector<vector<long long int> > matrix(N+1, vector<long long int>(N+1, 0));
-                flag = true;
-
-                for(row = 1; row <= N; row++)
-                {
-                        for(column = 1; column <= N; column++)
-                        {
-                                cin >> matrix.at(row).at(column);
-                                if(matrix.at(row).at(column) < 0)
-                                        flag = false;
-                        }
-                }
-
-                for(row = 1; row <= N; row++)
-                {
-                        for(column = 1; column <= N; column++)
-                        {
-                                if(matrix.at(row).at(column) != matrix.at(N-row+1).at(N-column+1)) {
-                                        flag = false;
-                                        break;
-                                }
-                        }
-                }
-                cout << "Test #" << initial - case_count;
-
-                if(flag)
-                        cout << ": Symmetric." << endl;
-                else
-                        cout << ": Non-symmetric." << endl;
+    int test_count, reg = 1;
+    std::cin >> test_count;
+    while (test_count--) {
+        char skip1, skip2;
+        int N;
+        bool flag = true;
+        std::cin >> skip1 >> skip2 >> N;
+        long long mat[N + 1][N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                std::cin >> mat[i][j];
+                if (mat[i][j] < 0)
+                    flag = false;
+            }
         }
-        return 0;
+        for (int i = 1; i < N + 1; i++) {
+            for (int j = 1; j < N + 1; j++) {
+                if (mat[i][j] != mat[N - i + 1][N - j + 1]) {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        std::cout << "Test #" << reg++ << ": ";
+        if (flag)
+            std::cout << "Symmetric." << '\n';
+        else
+            std::cout << "Non-symmetric." << '\n';
+    }
 }
