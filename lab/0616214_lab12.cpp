@@ -58,10 +58,11 @@ void build()
 int main()
 {
     build();
-    int n, low, high, mid;
+    int n;
     int case_count = 1;
 
     while (std::cin >> n && n >= 0) {
+        int low, high, mid;
         std::cout << "Case " << case_count++ << ": ";
         low = 0, high = 2749999;
         while (low < high - 1) {
