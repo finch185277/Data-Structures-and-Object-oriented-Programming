@@ -85,14 +85,15 @@ int main()
 
         // insert
         ret = rbTree.insert(key, sex, height, weight);
-        // collect evaluated test cases
-        testCases.push_back(key);
 
         // collision happen
         if (ret == false)
             repeat++;
+        else
+            // collect evaluated test cases
+            testCases.push_back(key);
     }
-    // You should not get repeat > 0
+    // (updated) repeat will > 0 because of collisions
     cout << repeat << endl;
 
     // Evauluate the speed of your RBTree
