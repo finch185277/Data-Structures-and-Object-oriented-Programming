@@ -7,7 +7,9 @@
 
 enum Color { RED,
     BLACK }; // (true, false)
-/*---------- constuctor of Node ----------*/
+
+// ===============  constuctor of Node ==============
+
 struct Node {
     int key, height, weight;
     std::string gender;
@@ -26,11 +28,13 @@ struct Node {
     inline const int& getHeight() const { return height; }
     inline const int& getWeight() const { return weight; }
 };
-/*--------------------- RBT ---------------------*/
+
+// ===================== RBT =======================
+
 class RBTree {
 private:
     Node* root;
-    inline void leftRotate(Node*& x)
+    inline void left_rotate(Node*& x)
     {
         Node* y = x->right;
         if (x->p == nullptr)
@@ -47,7 +51,7 @@ private:
         y->left = x;
         x->p = y;
     }
-    inline void rightRotate(Node*& x)
+    inline void right_rotate(Node*& x)
     {
         Node* y = x->left;
         if (x->p == nullptr)
@@ -65,7 +69,7 @@ private:
         x->p = y;
     }
     // This function fixes violations caused by BST insertion
-    inline void fixViolation(Node*& x)
+    inline void fix_violation(Node*& x)
     {
         Node* p_ptr = nullptr;
         Node* grand_p_ptr = nullptr;
@@ -98,7 +102,7 @@ private:
                     // Left-rotation required
 
                     if (x == p_ptr->right) {
-                        leftRotate(p_ptr);
+                        left_rotate(p_ptr);
                         x = p_ptr;
                         p_ptr = grand_p_ptr;
                     }
@@ -107,7 +111,7 @@ private:
                     // x is left child of its p
                     // Right-rotation required
 
-                    rightRotate(grand_p_ptr);
+                    right_rotate(grand_p_ptr);
                     std::swap(p_ptr->color, grand_p_ptr->color);
                     x = p_ptr;
                 }
@@ -135,7 +139,7 @@ private:
                     // x at p's Left
 
                     if (x == p_ptr->left) {
-                        rightRotate(p_ptr);
+                        right_rotate(p_ptr);
                         x = p_ptr;
                         p_ptr = x->p;
                     }
@@ -143,7 +147,7 @@ private:
                     // Case 3:
                     // x at p's x_right
 
-                    leftRotate(grand_p_ptr);
+                    left_rotate(grand_p_ptr);
                     std::swap(p_ptr->color, grand_p_ptr->color);
                     x = p_ptr;
                 }
@@ -164,7 +168,9 @@ public:
             Node* y = nullptr;
             while (x != nullptr) {
                 y = x;
-                if (key < x->key)
+                if (key == x->key)
+                    return false;
+                else if (key < x->key)
                     x = x->left;
                 else
                     x = x->right;
@@ -173,7 +179,9 @@ public:
             if (y == nullptr)
                 root = t;
             else {
-                if (t->key < y->key)
+                if (key == y->key)
+                    return false;
+                else if (t->key < y->key)
                     y->left = t;
                 else
                     y->right = t;
@@ -181,7 +189,8 @@ public:
             t->left = nullptr;
             t->right = nullptr;
             t->color = true;
-            fixViolation(t);
+            fix_violation(t);
+            return true;
         } catch (...) {
             return false;
         }
