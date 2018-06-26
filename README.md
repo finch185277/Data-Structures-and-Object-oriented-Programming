@@ -1,7 +1,7 @@
 # submitted_work_1062
 ### This is for OOP practice.
 
-## lab
+### lab
 - lab1  : UVa 11332 Summing Digits  
 - lab2  : UVa 11461 Square Numbers  
 - lab3  : UVa 10189 Minesweeper     
@@ -32,25 +32,25 @@
 |  12 |   UVa 10856   | Recover Factorial     |
 |  13 |   UVa 10327   | Flip Sort             |
 
-## HW1
+### HW1: Date class
 - ref: https://dotblogs.com.tw/jses88001/2013/04/22/102045
 
-## HW2
+### HW2: 3x3 Matrix
 - ref: https://www.wikihow.com/Find-the-Inverse-of-a-3x3-Matrix
 - ref: https://github.com/abc225666/Code/
 
-## HW3
+### HW3: Link List
 - ref: https://stackoverflow.com/questions/152555/h-or-hpp-for-your-class-definitions
 - ref:  https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 - ref: https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl
 
-## HW4
+### HW4: HashTable
 - ref: https://github.com/fsh0524/assignment
 - ref: https://github.com/katelo731/Hash_Table
 
-## HW5
+### HW5: Red-Black-Tree
 - ref: https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
 - ref: https://github.com/zyi23/Red-Black-Tree/blob/master/rbtree.cpp
 
-## Note
+### Note
 If any problem or any better solution, please contact me. Thanks.
