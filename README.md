@@ -47,3 +47,10 @@
 ## HW4
 - ref: https://github.com/fsh0524/assignment
 - ref: https://github.com/katelo731/Hash_Table
+
+## HW5
+- ref: https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
+- ref: https://github.com/zyi23/Red-Black-Tree/blob/master/rbtree.cpp
+
+## Note
+If any problem or any better solution, please contact me. Thanks.
