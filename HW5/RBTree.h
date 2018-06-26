@@ -1,4 +1,4 @@
-#pragma GCC optimize("O2")
+#pragma GCC optimize("Ofast")
 #ifndef RBTREE_H
 #define RBTREE_H
 
@@ -7,26 +7,29 @@
 
 enum Color { RED,
     BLACK }; // (true, false)
+enum GENDER { MALE = 0,
+    FEMALE,
+    TOTAL };
+static std::array<std::string, TOTAL> GENDER_NAME = { { "male", "female" } };
 
 // ===================== Node ======================
 
 struct Node {
     int key, height, weight;
-    std::string gender;
-    bool color;
+    bool color, sex;
     Node *left = nullptr, *right = nullptr, *p = nullptr;
     // Constructor
-    Node(int key, const std::string gender, int height, int weight)
+    Node(int key, const std::string& gender, int height, int weight)
         : key(key)
-        , gender(gender)
         , height(height)
         , weight(weight)
+        , sex{ (gender == "female") ? true : false }
     {
         ;
     }
-    inline const std::string& getGender() const { return gender; }
-    inline const int& getHeight() const { return height; }
-    inline const int& getWeight() const { return weight; }
+    inline const std::string& getGender() const { return GENDER_NAME[sex]; }
+    inline const int getHeight() const { return height; }
+    inline const int getWeight() const { return weight; }
 };
 
 // ===================== RBT =======================
@@ -160,7 +163,7 @@ public:
     // Constructor
     RBTree() { root = nullptr; }
     // BSTree insertion
-    inline bool insert(int key, const std::string gender, int height, int weight)
+    inline bool insert(int key, const std::string& gender, int height, int weight)
     {
         try {
             Node* t = new Node(key, gender, height, weight);
