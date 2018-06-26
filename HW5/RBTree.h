@@ -8,7 +8,7 @@
 enum Color { RED,
     BLACK }; // (true, false)
 
-// ===============  constuctor of Node ==============
+// ===================== Node ======================
 
 struct Node {
     int key, height, weight;
