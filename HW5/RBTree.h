@@ -3,6 +3,7 @@
 #define RBTREE_H
 
 #include <iostream>
+#include <memory>
 #include <string>
 
 enum Color {
@@ -16,11 +17,11 @@ static std::array<std::string, TOTAL> GENDER_NAME = { { "male", "female" } };
 
 // ===================== Node ======================
 
-struct Node {
+struct Node : public std::enable_shared_from_this<Node> {
     int key, height, weight;
     bool sex;
     Color color = RED;
-    Node *left = nullptr, *right = nullptr, *p = nullptr;
+    std::shared_ptr<Node> left = nullptr, right = nullptr, p = nullptr;
     // Constructor
     Node(int key, const std::string& gender, int height, int weight)
         : key(key)
@@ -28,7 +29,6 @@ struct Node {
         , weight(weight)
         , sex{ (gender == "female") ? true : false }
     {
-        ;
     }
     inline const std::string& getGender() const { return GENDER_NAME[sex]; }
     inline const int getHeight() const { return height; }
@@ -39,10 +39,10 @@ struct Node {
 
 class RBTree {
 private:
-    Node* root;
-    inline void left_rotate(Node*& x)
+    std::shared_ptr<Node> root = nullptr;
+    inline void left_rotate(std::shared_ptr<Node>& x)
     {
-        Node* y = x->right;
+        std::shared_ptr<Node> y = x->right;
         x->right = y->left;
 
         if (x->right != nullptr)
@@ -62,9 +62,9 @@ private:
         y->left = x;
         x->p = y;
     }
-    inline void right_rotate(Node*& x)
+    inline void right_rotate(std::shared_ptr<Node>& x)
     {
-        Node* y = x->left;
+        std::shared_ptr<Node> y = x->left;
         x->left = y->right;
 
         if (x->left != nullptr)
@@ -85,10 +85,10 @@ private:
         x->p = y;
     }
     // This function fixes violations caused by BST insertion
-    inline void fix_violation(Node*& x)
+    inline void fix_violation(std::shared_ptr<Node>& x)
     {
-        Node* p_ptr = nullptr;
-        Node* grand_p_ptr = nullptr;
+        std::shared_ptr<Node> p_ptr = nullptr;
+        std::shared_ptr<Node> grand_p_ptr = nullptr;
 
         while ((x != root) && (x->color != BLACK)
             && (x->p->color == RED)) {
@@ -99,7 +99,7 @@ private:
             //  p at grandp's left
 
             if (p_ptr == grand_p_ptr->left) {
-                Node* uncle_ptr = grand_p_ptr->right;
+                std::shared_ptr<Node> uncle_ptr = grand_p_ptr->right;
 
                 //  Case 1:
                 //  uncle is also RED
@@ -137,7 +137,7 @@ private:
             // p at grandp's right
 
             else {
-                Node* uncle_ptr = grand_p_ptr->left;
+                std::shared_ptr<Node> uncle_ptr = grand_p_ptr->left;
 
                 // Case 1:
                 // uncle also RED
@@ -174,14 +174,14 @@ private:
 
 public:
     // Constructor
-    RBTree() { root = nullptr; }
+    RBTree() {}
     // BSTree insertion
     inline bool insert(int key, const std::string& gender, int height, int weight)
     {
         try {
-            Node* t = new Node(key, gender, height, weight);
-            Node* x = root;
-            Node* y = nullptr;
+            std::shared_ptr<Node> t = std::make_shared<Node>(key, gender, height, weight);
+            std::shared_ptr<Node> x = root;
+            std::shared_ptr<Node> y = nullptr;
             while (x != nullptr) {
                 y = x;
                 if (key == x->key)
@@ -211,7 +211,7 @@ public:
     //  operator []
     inline Node& operator[](int key)
     {
-        Node* x = root;
+        std::shared_ptr<Node> x = root;
         while (x->key != key && x != nullptr) {
             if (x->key > key)
                 x = x->left;
@@ -222,7 +222,7 @@ public:
     }
     inline const Node operator[](int key) const
     {
-        Node* x = root;
+        std::shared_ptr<Node> x = root;
         while (x->key != key && x != nullptr) {
             if (x->key > key)
                 x = x->left;
