@@ -5,8 +5,10 @@
 #include <iostream>
 #include <string>
 
-enum Color { RED,
-    BLACK }; // (true, false)
+enum Color {
+    BLACK,
+    RED
+}; // (true, false)
 enum GENDER { MALE = 0,
     FEMALE,
     TOTAL };
@@ -16,7 +18,8 @@ static std::array<std::string, TOTAL> GENDER_NAME = { { "male", "female" } };
 
 struct Node {
     int key, height, weight;
-    bool color, sex;
+    bool sex;
+    Color color = RED;
     Node *left = nullptr, *right = nullptr, *p = nullptr;
     // Constructor
     Node(int key, const std::string& gender, int height, int weight)
@@ -40,34 +43,44 @@ private:
     inline void left_rotate(Node*& x)
     {
         Node* y = x->right;
+        x->right = y->left;
+
+        if (x->right != nullptr)
+            x->right->p = x;
+
+        y->p = x->p;
+
         if (x->p == nullptr)
             root = y;
+
         else {
             if (x == x->p->left)
                 x->p->left = y;
             else
                 x->p->right = y;
         }
-        y->p = x->p;
-        x->right = y->left;
-        y->left->p = x;
         y->left = x;
         x->p = y;
     }
     inline void right_rotate(Node*& x)
     {
         Node* y = x->left;
+        x->left = y->right;
+
+        if (x->left != nullptr)
+            x->left->p = x;
+
+        y->p = x->p;
+
         if (x->p == nullptr)
             root = y;
+
         else {
-            if (x->p->left == x)
+            if (x == x->p->left)
                 x->p->left = y;
             else
                 x->p->right = y;
         }
-        y->p = x->p;
-        x->left = y->right;
-        y->right->p = x;
         y->right = x;
         x->p = y;
     }
@@ -189,9 +202,6 @@ public:
                 else
                     y->right = t;
             }
-            t->left = nullptr;
-            t->right = nullptr;
-            t->color = true;
             fix_violation(t);
             return true;
         } catch (...) {
