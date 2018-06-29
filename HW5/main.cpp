@@ -12,7 +12,8 @@
 // Please implement RBTree class in separate header and cpp file (RBTree.h and RBTree.cpp)          //
 // And you should not modify any codes in main.cpp file.                                                //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-#include "RBTree.h"
+#include "play.hpp"
+//#include "RBTree.h"
 
 using namespace std;
 
