@@ -46,7 +46,6 @@
 
 ### HW4: HashTable
 - ref: https://github.com/fsh0524/assignment
-- ref: https://github.com/katelo731/Hash_Table
 
 ### HW5: Red-Black-Tree
 - ref: https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
