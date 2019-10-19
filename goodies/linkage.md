@@ -38,4 +38,38 @@ clang++ -std=c++17 -static -o run main.cpp -lboost_timer -lboost_chrono -lboost_
 is the correct command to compile. You need to tell the linker before it encounter any functions that it didn't know.
 
 # Automatic tools
-[TBD]
+There is some automatic tools that can save a lot of time correcting building process.
+[conan](https://github.com/conan-io/conan) and [cmake](https://github.com/conan-io/conan) are pretty good tools.
+
+First, create a file `conanfile.txt` and enter the dependencies of your project.
+```
+[requires]
+Poco/1.9.0@pocoproject/stable
+
+[generators]
+cmake
+```
+
+Next, create another file `CMakeLists.txt`
+```
+cmake_minimum_required(VERSION 3.0.0)
+project(pjname)
+
+add_definitions("-std=c++17")
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+add_executable(pjname main.cpp)
+target_link_libraries(pjname ${CONAN_LIBS})
+```
+
+Next run
+```
+conan profile new default --detect
+mkdir build && cd build
+conan install .. --build=missing
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+```
+And you can see that `conan` and `cmake` automatically linked with those required libraries.
